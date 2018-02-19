@@ -314,4 +314,6 @@ public class SequenceDLList<E> implements Sequence<E> {
         listHead = null;
         listTail = null;
     }
+
+
 }
