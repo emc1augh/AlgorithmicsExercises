@@ -1,7 +1,7 @@
 public class HashTableLProbeTest {
     public static void main(String[] args) {
         try {
-            HashTableLProbe<Integer> myLUT = new HashTableLProbe<Integer>(10);
+            LUT<Integer> myLUT = new HashTableLProbe<Integer>(10);
 
             myLUT.insert("Priscilla", new Integer(41));
             System.out.println(myLUT);
@@ -18,14 +18,11 @@ public class HashTableLProbeTest {
             myLUT.insert("John", new Integer(67));
             System.out.println(myLUT);
 
-            myLUT.resize(17);
+            myLUT.remove("Travis");
             System.out.println(myLUT);
-
-            myLUT.delete("Travis");
+            myLUT.remove("John");
             System.out.println(myLUT);
-            myLUT.delete("John");
-            System.out.println(myLUT);
-            myLUT.delete("Kay");
+            myLUT.remove("Kay");
             System.out.println(myLUT);
             myLUT.insert("Dani", new Integer(15));
             System.out.println(myLUT);
@@ -33,14 +30,9 @@ public class HashTableLProbeTest {
             System.out.println(myLUT);
             myLUT.insert("Travis", new Integer(34));
             System.out.println(myLUT);
-            myLUT.delete("Priscilla");
-            System.out.println(myLUT);
-            myLUT.delete("Andrew");
-            System.out.println(myLUT);
 
-
-        } catch (Exception e) {
-            System.out.println(e);
+        } catch (LUTKeyException e) {
+            throw new AssertionError("This should not happen." + e);
         }
     }
 }

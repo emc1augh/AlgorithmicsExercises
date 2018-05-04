@@ -1,6 +1,6 @@
 import java.lang.reflect.Array;
 
-public class HashTableLProbe <E> implements LUT<E> {
+public class HashTableLProbe2 <E> implements LUT<E> {
 
     /**
      * Implementation of an entry in the hash table array.
@@ -46,7 +46,7 @@ public class HashTableLProbe <E> implements LUT<E> {
      * Default constructor.
      */
     @SuppressWarnings("unchecked")
-    public HashTableLProbe() {
+    public HashTableLProbe2() {
         // Necessary hack to create a generic array
         entries = (Entry[]) Array.newInstance(new Entry().getClass(), 50);
     }
@@ -55,7 +55,7 @@ public class HashTableLProbe <E> implements LUT<E> {
      * Constructor for a given hash table size.
      */
     @SuppressWarnings("unchecked")
-    public HashTableLProbe(int size) {
+    public HashTableLProbe2(int size) {
         // Necessary hack to create a generic array
         entries = (Entry[]) Array.newInstance(new Entry().getClass(), size);
     }
@@ -134,7 +134,12 @@ public class HashTableLProbe <E> implements LUT<E> {
         if (entries[index] == null || count == entries.length) {
             throw new LUTKeyException();
         } else {
-            entries[index] = tombstone;
+            // Better: check for end of chain
+            if (entries[(index + 1) % entries.length] != null) {
+                entries[index] = tombstone;
+            } else {
+                entries[index] = null;
+            }
         }
     }
 

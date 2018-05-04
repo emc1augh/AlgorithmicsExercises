@@ -1,4 +1,3 @@
-
 /**
  * Implementation of LUT using ordered linear search.
  *
